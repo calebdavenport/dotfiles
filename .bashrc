@@ -13,7 +13,6 @@ export PATH=~/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
 
 export PS1="\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]O\"; else echo \"\[\033[01;31m\]\$?\"; fi)${P_RESET} [\t] ${P_BLUE}\h${P_RESET}:${P_BLUE}\w${P_RESET} >> "
 
-alias ls="ls --color"
 alias ssh="ssh -X"
 alias ..='cd ..'
 alias ~='cd ~'
