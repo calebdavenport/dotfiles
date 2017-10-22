@@ -1,5 +1,6 @@
 set history=500
 syntax enable
+filetype indent plugin on
 " Show line number
 set number
 
