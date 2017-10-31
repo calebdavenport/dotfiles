@@ -1,6 +1,19 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+call vundle#end()
+filetype indent plugin on
+""""""""""""""""""""""""""""""
+" EVERYTHING ABOVE IS REQUIRED FOR VUNDLE
+"""""""""""""""""""""""""""""
+
 set history=500
 syntax enable
-filetype indent plugin on
 " Show line number
 set number
 
