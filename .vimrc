@@ -5,6 +5,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'shumphrey/fugitive-gitlab.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'mbbill/undotree'
+Plugin 'chikamichi/mediawiki.vim'
+Plugin 'python-mode/python-mode'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 call vundle#end()
 filetype indent plugin on
