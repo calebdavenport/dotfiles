@@ -17,46 +17,42 @@ Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 filetype indent plugin on
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " EVERYTHING ABOVE IS REQUIRED FOR VUNDLE
 """""""""""""""""""""""""""""
 
-set history=500
+"""""""""""""""""""""""""""""
+" Settings
+"""""""""""""""""""""""""""""
 syntax enable
-" Show line number
-set number
+
+set history=1000        " Increase command history
+set cursorline          " Highlight the current line
+set number              " Show line number
 
 " Use 4 spaces instead of tabs
 set expandtab
 set shiftwidth=4
 set tabstop=4
-set autoindent
+set softtabstop=4
 
-colorscheme Tomorrow-Night
-let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
-    \ },
-    \ }
-set noshowmode
+set autoindent          " Automatically indent new lines
 
+set scrolloff=6         " Have cursor # lines away from edge when scrolling
+
+set laststatus=2        " Always show statusline on all windows
+set noshowmode          " Don't show mode on last statusline
+set cc=80               " Set vertical line on column #
+
+"""""""""""""""""""""""""""""
 " Easy vertical movement thourgh word-wrapped lines
+"""""""""""""""""""""""""""""
 nnoremap k gk
 nnoremap j gj
 
-" Status Line Config
-"""""""""""""""""""""""""
-set laststatus=2
-set ruler
-set cc=80
-
+"""""""""""""""""""""""""""""
 " Relative Number Toggle
-"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 noremap <F2> :call RelativeNumberOn()<CR>
 inoremap <F2> <C-O>:call RelativeNumberOn()<CR>
 
@@ -71,3 +67,18 @@ function! RelativeNumberOff()
     inoremap <F2> <C-O>:call RelativeNumberOn()<CR>
     set norelativenumber 
 endfunction
+
+"""""""""""""""""""""""""""""
+" Vundle Plugin Settings
+"""""""""""""""""""""""""""""
+colorscheme Tomorrow-Night
+let g:lightline = {
+    \ 'colorscheme': 'Tomorrow_Night',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
