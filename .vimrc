@@ -13,6 +13,7 @@ Plugin 'mbbill/undotree'
 Plugin 'chikamichi/mediawiki.vim'
 Plugin 'python-mode/python-mode'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 filetype indent plugin on
@@ -29,6 +30,20 @@ set number
 set expandtab
 set shiftwidth=4
 set tabstop=4
+set autoindent
+
+colorscheme Tomorrow-Night
+let g:lightline = {
+    \ 'colorscheme': 'Tomorrow_Night',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
+set noshowmode
 
 " Easy vertical movement thourgh word-wrapped lines
 nnoremap k gk
@@ -39,9 +54,6 @@ nnoremap j gj
 set laststatus=2
 set ruler
 set cc=80
-
-" TODO: Create formatting of statusline below
-" set statusline=
 
 " Relative Number Toggle
 """""""""""""""""""""""""
