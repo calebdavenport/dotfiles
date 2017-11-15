@@ -21,7 +21,7 @@ export PATH=~/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
 prompt="\$(if [[ \$? == 0 ]];"
 prompt+="then echo \${C_BOLD}\${C_GREEN}O;"
 prompt+="else echo \${C_BOLD}\${C_LIGHTRED}\$?;"
-prompt+="fi)${P_RESET} "
+prompt+="fi)${C_RESET} "
 
 # Show the current git branch, bold if there are files not committed
 gitbranch() {
@@ -37,9 +37,9 @@ prompt+="fi)"
 # Show the current time
 prompt+="[\t] "
 # Show the first section of the hostname
-prompt+="${P_BLUE}\h${P_RESET}:"
+prompt+="${C_BLUE}\h${C_RESET}:"
 # Show the current working directory
-prompt+="${P_BLUE}\w${P_RESET}$ "
+prompt+="${C_BLUE}\w${C_RESET}$ "
 export PS1=$prompt
 
 ###########
