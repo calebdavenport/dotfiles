@@ -17,29 +17,41 @@ export PATH=~/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
 #################
 # Custom Prompt #
 #################
-# Show color coded error code of previous command
-prompt="\$(if [[ \$? == 0 ]];"
-prompt+="then echo \${C_BOLD}\${C_GREEN}O;"
-prompt+="else echo \${C_BOLD}\${C_LIGHTRED}\$?;"
-prompt+="fi)${C_RESET} "
-
-# Show the current git branch, bold if there are files not committed
+# Run commands before showing the prompt
 gitbranch() {
     response=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) 2>/dev/null
     if [[ -z $response ]]; then return; fi
-    git diff-index --quiet HEAD -- 2>/dev/null || response=${C_BOLD}$response${C_RESET}
-    printf $response
+    response="$response "
 }
-prompt+="\$(if [[ \$(gitbranch) ]];"
-prompt+="then printf \$(gitbranch); printf ' ';"
-prompt+="fi)"
+diff_head() {
+    if [[ $(git diff-index --quiet HEAD -- 2>/dev/null) ]];
+    then diff_head_result=1;
+    else diff_head_result=0;
+    fi;
+}
+PROMPT_COMMAND='gitbranch diff_head'
 
-# Show the current time
+# Note that ${C_COLOR} must be surrounded by \[ and \].
+# This ensures that bash can accurately count the number of visible characters.
+
+# Color coded error code of previous command
+prompt="\$(if [[ \$? == 0 ]];"
+prompt+='then echo "\[$C_BOLD$C_GREEN\]O"; '
+prompt+='else echo \[$C_BOLD$C_LIGHTRED\]$?; '
+prompt+='fi)\[$C_RESET\]'
+
+# Current git branch, bold if there are files not committed
+prompt+="\$(if [[ diff_head_result ]];"
+prompt+='then echo "\[$C_BOLD\]";'
+prompt+='fi) '
+prompt+='$response\[$C_RESET\]'
+
+# Current time [HH:MM:SS]
 prompt+="[\t] "
-# Show the first section of the hostname
-prompt+="${C_BLUE}\h${C_RESET}:"
-# Show the current working directory
-prompt+="${C_BLUE}\w${C_RESET}$ "
+# First section of the hostname
+prompt+='\[$C_BLUE\]\h\[$C_RESET\]:'
+# Current working directory
+prompt+='\[$C_BLUE\]\w\[$C_RESET\]$ '
 export PS1=$prompt
 
 ###########
