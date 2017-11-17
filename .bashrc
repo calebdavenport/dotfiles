@@ -24,30 +24,28 @@ gitbranch() {
     response="$response "
 }
 diff_head() {
-    if [[ $(git diff-index --quiet HEAD -- 2>/dev/null) ]];
-    then diff_head_result=1;
-    else diff_head_result=0;
-    fi;
+    diff_head_nochange=1
+    git diff-index --quiet HEAD -- 2>/dev/null || diff_head_nochange=0
 }
-PROMPT_COMMAND='gitbranch diff_head'
+PROMPT_COMMAND='gitbranch; diff_head'
 
 # Note that ${C_COLOR} must be surrounded by \[ and \].
 # This ensures that bash can accurately count the number of visible characters.
 
 # Color coded error code of previous command
-prompt="\$(if [[ \$? == 0 ]];"
+prompt='$(if [[ $? == 0 ]];'
 prompt+='then echo "\[$C_BOLD$C_GREEN\]O"; '
 prompt+='else echo \[$C_BOLD$C_LIGHTRED\]$?; '
 prompt+='fi)\[$C_RESET\]'
 
 # Current git branch, bold if there are files not committed
-prompt+="\$(if [[ diff_head_result ]];"
+prompt+='$(if [[ $diff_head_nochange == 0 ]];'
 prompt+='then echo "\[$C_BOLD\]";'
 prompt+='fi) '
 prompt+='$response\[$C_RESET\]'
 
 # Current time [HH:MM:SS]
-prompt+="[\t] "
+prompt+='[\t] '
 # First section of the hostname
 prompt+='\[$C_BLUE\]\h\[$C_RESET\]:'
 # Current working directory
