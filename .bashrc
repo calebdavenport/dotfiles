@@ -49,7 +49,13 @@ prompt+='[\t] '
 # First section of the hostname
 prompt+='\[$C_BLUE\]\h\[$C_RESET\]:'
 # Current working directory
-prompt+='\[$C_BLUE\]\w\[$C_RESET\]$ '
+prompt+='\[$C_BLUE\]\w\[$C_RESET\]'
+
+# Use $ or # depending on root status
+prompt+='$(if [[ $EUID == 0 ]];'
+prompt+='then echo "#";'
+prompt+='else echo "$";'
+prompt+='fi) '
 export PS1=$prompt
 
 ###########
