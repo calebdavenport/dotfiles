@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-export PATH=~/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
+export PATH=~/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:/opt/bin
 
     C_RED=$(tput setaf 196)
     C_LIGHTRED=$(tput setaf 1)
