@@ -66,3 +66,6 @@ alias ..='cd ..'
 alias ~='cd ~'
 alias e="exit"
 alias ll="ls -alh"
+
+alias :q="echo You are not in Vim"
+alias :x="echo You are not in Vim"

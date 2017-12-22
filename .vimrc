@@ -17,14 +17,17 @@ Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 filetype indent plugin on
-"""""""""""""""""""""""""""""
-" EVERYTHING ABOVE IS REQUIRED FOR VUNDLE
-"""""""""""""""""""""""""""""
+" --------------------------------------- "
+" EVERYTHING ABOVE IS REQUIRED FOR VUNDLE "
+" --------------------------------------- "
 
-"""""""""""""""""""""""""""""
-" Settings
-"""""""""""""""""""""""""""""
-syntax enable
+" -------- "
+" Settings "
+" -------- "
+try
+    syntax enable       " Enable syntax if supported
+catch
+endtry
 
 set history=1000        " Increase command history
 set cursorline          " Highlight the current line
@@ -44,15 +47,33 @@ set laststatus=2        " Always show statusline on all windows
 set noshowmode          " Don't show mode on last statusline
 set cc=80               " Set vertical line on column #
 
-"""""""""""""""""""""""""""""
-" Easy vertical movement thourgh word-wrapped lines
-"""""""""""""""""""""""""""""
+" ------------------------------------------------- "
+" Easy vertical movement thourgh word-wrapped lines "
+" ------------------------------------------------- "
 nnoremap k gk
 nnoremap j gj
 
-"""""""""""""""""""""""""""""
-" Relative Number Toggle
-"""""""""""""""""""""""""""""
+" ------------------- "
+" Move line(s) easily "
+" ------------------- "
+
+vmap <C-k> xkP`[V`]
+vmap <C-j> xp`[V`]
+
+nmap <C-k> ddkP
+nmap <C-j> ddp
+
+" ------------------------- "
+" Leave Insert Mode with jk "
+" ------------------------- "
+
+inoremap <silent> jk <ESC>
+inoremap <silent> kj <ESC>
+set timeoutlen=50
+
+" ---------------------- "
+" Relative Number Toggle "
+" ---------------------- "
 noremap <F2> :call RelativeNumberOn()<CR>
 inoremap <F2> <C-O>:call RelativeNumberOn()<CR>
 
@@ -68,17 +89,22 @@ function! RelativeNumberOff()
     set norelativenumber 
 endfunction
 
-"""""""""""""""""""""""""""""
-" Vundle Plugin Settings
-"""""""""""""""""""""""""""""
-colorscheme Tomorrow-Night
-let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
-    \ },
-    \ }
+" ---------------------- "
+" Vundle Plugin Settings "
+" ---------------------- "
+try
+    colorscheme Tomorrow-Night
+    let g:lightline = {
+        \ 'colorscheme': 'Tomorrow_Night',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head'
+        \ },
+        \ }
+catch
+endtry
+
+let g:pymode_folding = 0
