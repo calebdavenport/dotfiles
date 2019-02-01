@@ -39,7 +39,7 @@ if confirmcopy(".vimrc"):
     pass
 
 if confirmcopy(".tmux.conf"):
-    try:    
+    try:
         print("Reloading tmux source file")
         run(["tmux",
              "source-file",
