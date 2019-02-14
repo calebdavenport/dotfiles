@@ -46,6 +46,19 @@ set scrolloff=6         " Have cursor # lines away from edge when scrolling
 set laststatus=2        " Always show statusline on all windows
 set noshowmode          " Don't show mode on last statusline
 set cc=80               " Set vertical line on column #
+set backspace=0         " Vi-behavior backspace
+
+" ------------------ "
+" Disable arrow keys "
+" ------------------ "
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 " ------------------------------------------------- "
 " Easy vertical movement thourgh word-wrapped lines "
