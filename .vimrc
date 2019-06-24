@@ -33,6 +33,9 @@ set history=1000        " Increase command history
 set cursorline          " Highlight the current line
 set number              " Show line number
 
+"Have all swapfiles in a single directory
+set directory^=$HOME/.swapfiles_vim//
+
 " Use 4 spaces instead of tabs
 set expandtab
 set shiftwidth=4
